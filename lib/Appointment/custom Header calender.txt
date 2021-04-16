@@ -1,0 +1,47 @@
+//TODO "custom Header calender"
+    final _calendarCarousel = CalendarCarousel<Event>(
+      onDayPressed: (date, events) {
+        //events takes from markedDatesMap property of CalendarCarousel<Event>
+        this.setState(() => _currentDate = date);
+        events.forEach((event) => print(event.title));
+        //todo: on press on it print all events
+      },
+      weekendTextStyle: TextStyle(
+        color: Colors.red,
+      ),
+      thisMonthDayBorderColor: Colors.grey,
+//          weekDays: null, /// for pass null when you do not want to render weekDays
+      headerText: 'Custom Header',
+      weekFormat: true,
+      markedDatesMap: _markedDateMap, //TODO events takes this
+      height: 200.0,
+      selectedDateTime: _currentDate2,
+      showIconBehindDayText: true,
+      daysHaveCircularBorder:
+          false, //TODO /// null for not rendering any border, true for circular border, false for rectangular border
+      customGridViewPhysics: NeverScrollableScrollPhysics(),
+      markedDateShowIcon: true,
+      markedDateIconMaxShown: 2,
+      selectedDayTextStyle: TextStyle(
+        color: Colors.black,
+      ),
+      todayTextStyle: TextStyle(
+        color: Colors.blue,
+      ),
+      markedDateIconBuilder: (event) {
+        return event.icon ?? Icon(Icons.help_outline);
+        //TODO if _markedDateMap.icon ==null return Icons.help_outline
+      },
+      minSelectedDate: _currentDate
+          .subtract(Duration(days: 360)), // year before a _currentDate
+      maxSelectedDate:
+          _currentDate.add(Duration(days: 360)), // year after a _currentDate
+      todayButtonColor: Colors.transparent,
+      todayBorderColor: Colors.black12,
+      markedDateMoreShowTotal:
+          true, //? display total of events in a specific day
+      // null for not showing hidden events indicator
+
+//          markedDateIconMargin: 9,
+//          markedDateIconOffset: 3,
+    );
